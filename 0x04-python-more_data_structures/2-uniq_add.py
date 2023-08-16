@@ -1,18 +1,10 @@
 #!/usr/bin/python3
-
 def uniq_add(my_list=[]):
-    unique_numbers = set()  # To store unique integers
-    total_sum = 0
+    uniq_list = set(my_list)
+    num = 0
 
-    for num in my_list:
-        if num not in unique_numbers:
-            total_sum += num
-            unique_numbers.add(num)
+    for i in uniq_list:
+        num += i
 
-    return total_sum
-
-if __name__ == "__main__":
-    my_list = [1, 2, 3, 1, 4, 2, 5]
-    result = uniq_add(my_list)
-    print("Result: {:d}".format(result))
+    return (num)
 
