@@ -5,18 +5,26 @@
  * @h: Pointer to the head of the linked list.
  * Return: The number of nodes in the list.
  */
+
 size_t print_dlistint(const dlistint_t *h)
 {
-    size_t node_count = 0; /* Initialize the node count */
+    int count;
 
-    /* Traverse the linked list */
+    count = 0;
+
+    if (h == NULL)
+        return (count);
+
+    while (h->prev != NULL)
+        h = h->prev;
+
     while (h != NULL)
     {
-        printf("%d\n", h->n); /* Print the current node's value */
-        h = h->next; /* Move to the next node */
-        node_count++; /* Increment the node count */
+        printf("%d\n", h->n);
+        count++;
+        h = h->next;
     }
 
-    return node_count; /* Return the total number of nodes */
+    return (count);
 }
 
