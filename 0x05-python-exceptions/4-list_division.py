@@ -1,48 +1,29 @@
 #!/usr/bin/python3
 
 def list_division(my_list_1, my_list_2, list_length):
-    """Divide element by element in two lists and handle exceptions.
+    """Divides two lists element by element and handles exceptions.
 
     Args:
         my_list_1 (list): The first list.
         my_list_2 (list): The second list.
-        list_length (int): The length of the new list.
+        list_length (int): The number of elements to divide.
 
     Returns:
-        A new list with divisions.
+        A new list of length list_length containing all the divisions.
     """
-    result = []
-
-    for i in range(list_length):
+    new_list = []
+    for i in range(0, list_length):
         try:
-            dividend = my_list_1[i] if i < len(my_list_1) else 0
-            divisor = my_list_2[i] if i < len(my_list_2) else 0
-
-            if isinstance(dividend, (int, float)) and isinstance(divisor, (int, float)):
-                if divisor == 0:
-                    result.append(0)
-                    print("division by 0")
-                else:
-                    result.append(dividend / divisor)
-            else:
-                result.append(0)
-                print("wrong type")
-
-        except (IndexError):
+            div = my_list_1[i] / my_list_2[i]
+        except TypeError:
+            print("wrong type")
+            div = 0
+        except ZeroDivisionError:
+            print("division by 0")
+            div = 0
+        except IndexError:
             print("out of range")
-            result.append(0)
-
-    return result
-
-if __name__ == "__main__":
-    my_l_1 = [10, 8, 4]
-    my_l_2 = [2, 4, 4]
-    result = list_division(my_l_1, my_l_2, max(len(my_l_1), len(my_l_2)))
-    print(result)
-
-    print("--")
-
-    my_l_1 = [10, 8, 4, 4]
-    my_l_2 = [2, 0, "H", 2, 7]
-    result = list_division(my_l_1, my_l_2, max(len(my_l_1), len(my_l_2)))
-    print(result)
+            div = 0
+        finally:
+            new_list.append(div)
+    return new_list
